@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogging Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom colors */
+        .bg-primary {
+            background-color: #61b507;
+        }
+
+        .bg-secondary {
+            background-color: #95cf00;
+        }
+
+        .bg-tertiary {
+            background-color: #a1e600;
+        }
+
+        .bg-dark {
+            background-color: #3d3d3d;
+        }
+
+        .bg-light {
+            background-color: #cee1b1;
+        }
+
+        /* Sidebar styling */
+        #sidebar {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(-100%);
+        }
+
+        /* Adjustments for larger screens */
+        @media (min-width: 768px) {
+            #sidebar {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-light min-h-screen flex">
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="bg-dark w-64 h-full p-4 fixed top-0 left-0 md:relative z-50">
+        <div class="text-white text-2xl font-semibold mb-8 flex justify-between items-center">
+            MyBlog Dashboard
+            <button id="close-sidebar" class="text-white focus:outline-none md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <nav class="flex flex-col flex-1">
+            <a href="#" class="text-white py-2 hover:bg-primary rounded mb-2">Dashboard</a>
+            <a href="#" class="text-white py-2 hover:bg-primary rounded mb-2">My Posts</a>
+            <a href="#" class="text-white py-2 hover:bg-primary rounded mb-2">New Post</a>
+            <a href="#" class="text-white py-2 hover:bg-primary rounded mb-2">Analytics</a>
+            <a href="#" class="text-white py-2 hover:bg-primary rounded mb-2">Settings</a>
+        </nav>
+        <button class="mt-4 bg-secondary text-white py-2 px-4 rounded hover:bg-tertiary">
+            Log Out
+        </button>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-6 transition-all duration-300">
+        <!-- Top Navigation Bar -->
+        <header class="flex justify-between items-center mb-6">
+            <button id="menu-toggle" class="text-dark focus:outline-none md:hidden">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+            <h1 class="text-3xl font-semibold text-dark">Dashboard</h1>
+            <button class="bg-primary text-white py-2 px-4 rounded hover:bg-secondary">
+                New Post
+            </button>
+        </header>
+
+        <!-- Statistics Overview -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div class="bg-primary text-white p-6 rounded-lg">
+                <h2 class="text-xl font-semibold">Total Posts</h2>
+                <p class="text-4xl font-bold">45</p>
+            </div>
+            <div class="bg-secondary text-white p-6 rounded-lg">
+                <h2 class="text-xl font-semibold">Total Views</h2>
+                <p class="text-4xl font-bold">2,309</p>
+            </div>
+            <div class="bg-tertiary text-white p-6 rounded-lg">
+                <h2 class="text-xl font-semibold">Total Followers</h2>
+                <p class="text-4xl font-bold">812</p>
+            </div>
+        </section>
+
+        <!-- Recent Posts Table -->
+        <section class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-2xl font-semibold text-dark mb-4">Recent Posts</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border">
+                    <thead>
+                        <tr class="border-b">
+                            <th class="px-4 py-2 text-left bg-dark text-white">Title</th>
+                            <th class="px-4 py-2 text-left bg-dark text-white">Date</th>
+                            <th class="px-4 py-2 text-left bg-dark text-white">Views</th>
+                            <th class="px-4 py-2 text-left bg-dark text-white">Status</th>
+                            <th class="px-4 py-2 text-left bg-dark text-white">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b">
+                            <td class="px-4 py-2">Understanding CSS Grid</td>
+                            <td class="px-4 py-2">Aug 16, 2024</td>
+                            <td class="px-4 py-2">500</td>
+                            <td class="px-4 py-2">Published</td>
+                            <td class="px-4 py-2">
+                                <button class="bg-primary text-white py-1 px-2 rounded">Edit</button>
+                                <button class="bg-red-500 text-white py-1 px-2 rounded ml-2">Delete</button>
+                            </td>
+                        </tr>
+                        <!-- More rows can be added here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const closeSidebar = document.getElementById('close-sidebar');
+        const sidebar = document.getElementById('sidebar');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('hidden');
+        });
+
+        closeSidebar.addEventListener('click', () => {
+            sidebar.classList.add('hidden');
+        });
+    </script>
+</body>
+
+</html>
